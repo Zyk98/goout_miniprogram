@@ -1,0 +1,31 @@
+<view class="home-view">
+  <image src="../../images/kd.png" class="home-view-image"></image>
+  <text class="home-view-text">校园防控管理系统</text>
+</view>
+
+<view class="button-view">
+  <text class="button-view-text">————— 申请 —————</text>
+  <!-- <button class="buttoncolor" catchtap="clickButton1">{{editText1}}</button> -->
+
+  <button class="buttoncolor" style="background-color: {{buttoncolorOut}};" bindtap="navToOut">{{editTextOut}}</button>
+
+  <button class="buttoncolor" style="background-color: {{buttoncolorIn}};" bindtap="navToIn">{{editTextIn}}</button>
+
+  <button class="buttoncolor">进出校申请</button>
+
+  <button class="buttoncolor">寒暑假返校申请</button>
+
+  <!-- <button class="buttoncolor">逸夫楼进出申请</button> -->
+
+  <button class="buttoncolor">体温上报</button>
+
+
+
+</view>
+
+<button class="reset-button" style="color:#FFFFFF" bindtap="resetData">重置数据</button>
+<!-- <view>
+  <page-meta>
+    <navigation-bar title="导航栏" style="margin-bottom: 100rpx;" />
+  </page-meta>
+</view> -->

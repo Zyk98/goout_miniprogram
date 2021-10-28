@@ -1,0 +1,75 @@
+<!--pages/home/stu/stu.wxml-->
+<!-- <view style="text-align: center; overflow:hidden;">
+  <view class="red-cicrle"></view>
+</view> -->
+
+<view class="color-grad">
+  <view class="show-date">
+    {{date}}
+  </view>
+
+  <view wx:for="{{[0,1,2,3]}}" wx:for-index="i" wx:key="*this">
+    <view wx:for="{{arr}}" wx:for-index="j" wx:key="*this">
+      <image animation="{{ani2}}" src="/images/circle.png" style=" width:19rpx; height:19rpx; position:absolute; left:{{valx[i]+lx[i]*j*40}}rpx; top:{{valy[i]+ly[i]*j*40}}rpx;">
+      </image>
+    </view>
+    <view wx:for="{{arr}}" wx:for-index="j" wx:key="*this">
+      <image animation="{{ani}}" src="/images/circle.png" style=" width:19rpx; height:19rpx; position:absolute; left:{{valx[i]+lx[i]*j*40+lx[i]*20}}rpx; top:{{valy[i]+ly[i]*j*40+ly[i]*20}}rpx;">
+      </image>
+    </view>
+  </view>
+  <view class="show-picture">
+    <!-- <image src="{{info.picture}}" style="width:380rpx;height:380rpx"></image> -->
+    <image src="/images/zyk.jpeg" style="width:380rpx;height:380rpx"></image>
+  </view>
+  <view class="btn">
+    <view class="show-timer">有效期：{{timer}}</view>
+    <!-- <view class="show-timer">有效期：10:00</view> -->
+  </view>
+  <view>
+    <view class="circle yes">允许<br></br>进校</view>
+  </view>
+  <view class="info">
+    <view class="container1">
+      <view class="line">
+        <view class="item1">
+          姓名
+        </view>
+        <view class="item2">
+          <!-- {{info.name}} -->
+          郑永康
+        </view>
+      </view>
+
+      <view class="divLine"></view>
+
+      <view class="line">
+        <view class="item1">
+          学号/工号
+        </view>
+        <view class="item2">
+          <!-- {{info.id}} -->
+          1610290325
+        </view>
+      </view>
+
+      <view class="divLine"></view>
+
+      <view class="line">
+        <view class="item1">
+          学院
+        </view>
+        <view class="item2">
+          <!-- {{info.college}} -->
+          机电与信息工程学院
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="simple-button">
+  <button class="simple-button" bindtap="navToHomePage">
+    返回首页
+  </button>
+</view>
