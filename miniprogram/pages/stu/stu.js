@@ -1,6 +1,11 @@
 const util = require("../../utils/dataUtil.js");
 const app = getApp();
 var time = 600;
+var flag = 1;
+// const db = wx.cloud.database({
+//   env: "kdbj",
+// });
+// const user = db.collection('user');
 
 Page({
   navToHomePage() {
@@ -54,21 +59,32 @@ Page({
     });
   },
 
-  test() {
-    if (!util.getSecond()) {
-      console.log("getSecond 1");
+  twinkle() {
+    // if (!util.getSecond()) {
+    //   console.log("getSecond 1");
+    //   this.play();
+    //   this.display2();
+    // } else {
+    //   console.log("getSecond 0");
+    //   this.play2();
+    //   this.display();
+    // }
+    if (flag == 1) {
       this.play();
       this.display2();
+      flag = 0;
     } else {
-      console.log("getSecond 0");
       this.play2();
       this.display();
+      flag = 1;
     }
   },
   /**
    * 页面的初始数据
    */
   onLoad: function () {
+    wx.cloud.init();
+
     //日期显示
     var that = this;
 
@@ -104,7 +120,7 @@ Page({
       //   },
       flash: 0,
     });
-    app.globalData.timer = setInterval(this.test, 300);
+    app.globalData.timer = setInterval(this.twinkle, 300);
   },
   onUnload: function () {
     console.log("onUnload");

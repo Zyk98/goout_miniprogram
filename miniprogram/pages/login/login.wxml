@@ -1,0 +1,10 @@
+<!--pages/login/login.wxml-->
+<!-- <text>pages/login/login.wxml</text> -->
+<view class="input">
+  <image class="user_img" bindtap="uploadUserImg" src="{{userimg}}"></image>
+  <input class="input_text" bindinput="nameinput" type="text" placeholder="请输入姓名" />
+  <input class="input_text" bindinput="idinput" type="text" placeholder="请输入学号" />
+</view>
+<view>
+  <button class="login_button" bindtap="loginBtnClick">登录</button>
+</view>

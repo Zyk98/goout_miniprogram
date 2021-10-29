@@ -1,0 +1,26 @@
+/* pages/login/login.wxss */
+.input_text {
+  width: 80%;
+  background-color: #870000;
+  font-size: 29rpx;
+  height: 80rpx;
+  color: #ffffff;
+  border-radius: 13rpx;
+  margin-top: 30rpx;
+  justify-content: center;
+}
+.input {
+  margin-top: 500rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login_button {
+  margin-top: 100rpx;
+  color: #ffffff;
+  background-color: #870000;
+  width: 50%;
+}
+.user_img {
+  background-color: #870000;
+}
