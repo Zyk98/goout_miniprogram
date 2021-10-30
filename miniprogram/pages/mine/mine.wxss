@@ -1,1 +1,7 @@
 /* pages/mine/mine.wxss */
+.toLogin {
+  margin-top: 100rpx;
+  width: 60%;
+  color: #ffffff;
+  background-color: #870000;
+}

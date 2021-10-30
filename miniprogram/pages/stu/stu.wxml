@@ -1,7 +1,7 @@
 <!--pages/home/stu/stu.wxml-->
-<!-- <view style="text-align: center; overflow:hidden;">
+<view style="text-align: center; overflow:hidden;">
   <view class="red-cicrle"></view>
-</view> -->
+</view>
 
 <view class="color-grad">
   <view class="show-date">
@@ -20,7 +20,7 @@
   </view>
   <view class="show-picture">
     <!-- <image src="{{info.picture}}" style="width:380rpx;height:380rpx"></image> -->
-    <image src="/images/zyk.jpeg" style="width:380rpx;height:380rpx"></image>
+    <image src="{{_stuImg}}" mode="aspectFill" style="width:380rpx;height:380rpx"></image>
   </view>
   <view class="btn">
     <view class="show-timer">有效期：{{timer}}</view>
@@ -37,7 +37,7 @@
         </view>
         <view class="item2">
           <!-- {{info.name}} -->
-          郑永康
+          {{_stuName}}
         </view>
       </view>
 
@@ -49,7 +49,7 @@
         </view>
         <view class="item2">
           <!-- {{info.id}} -->
-          1610290325
+          {{_stuId}}
         </view>
       </view>
 

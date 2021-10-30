@@ -3,8 +3,9 @@
     "pages/login/login",
     "pages/home2/home2",
     "pages/stu/stu",
+    "pages/mine/mine",
     "pages/home/home",
-    "pages/mine/mine"
+    "pages/history/history"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -27,7 +28,7 @@
       {
         "iconPath": "icons/记录.png",
         "selectedIconPath": "icons/记录2.png",
-        "pagePath": "pages/mine/mine",
+        "pagePath": "pages/history/history",
         "text": "记录查询"
       },
       {

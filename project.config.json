@@ -35,13 +35,13 @@
     "packNpmRelationList": [],
     "minifyWXSS": true,
     "disableUseStrict": false,
+    "minifyWXML": true,
     "showES6CompileOption": false,
-    "useCompilerPlugins": false,
-    "minifyWXML": true
+    "useCompilerPlugins": false
   },
   "appid": "wx1f4882ec0e20d0e4",
   "projectname": "goout_miniprogram",
-  "libVersion": "2.14.1",
+  "libVersion": "2.19.2",
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
     "search": {

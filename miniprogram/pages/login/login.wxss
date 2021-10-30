@@ -10,17 +10,32 @@
   justify-content: center;
 }
 .input {
-  margin-top: 500rpx;
+  margin-top: 100rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upload_button {
+  margin-top: 50rpx;
+  color: #ffffff;
+  background-color: #870000;
+  width: 50%;
+}
 .login_button {
-  margin-top: 100rpx;
+  margin-top: 30rpx;
   color: #ffffff;
   background-color: #870000;
   width: 50%;
 }
 .user_img {
   background-color: #870000;
+}
+.tip_text {
+  margin-top: 30rpx;
 }

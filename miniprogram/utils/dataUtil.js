@@ -1,13 +1,3 @@
-//从id 中获取应该存入的数据库
-//如学号为：171041020x  应该存入  0417 数据库
-//授权码为  xxxx0417 的老师应该从  0417 数据库拉取数据
-// function getDBById(id, type) {
-//   if (type == 0) {
-//     return id.substr(3, 2) + id.substr(0, 2);
-//   } else {
-//     return id.substr(4, 4);
-//   }
-// }
 //获取当前时间
 //格式：2020/9/18 20:03:03
 function getNowTime() {
@@ -22,15 +12,9 @@ function getNowTime() {
       time[i] = "0" + time[i];
     }
   }
-  return now;
+  return time;
 }
-// var a = 1;
-// function getSecond() {
-//   let now = new Date();
-//   let ans = a;
-//   a = 1 - a;
-//   return ans;
-// }
+
 function formatSeconds(value) {
   let result = parseInt(value);
   let h =
@@ -52,6 +36,7 @@ function formatSeconds(value) {
   res += `${s}`;
   return res;
 }
+
 function getDate() {
   let pre_date = "";
   let pre_month = "";
@@ -63,5 +48,9 @@ function getDate() {
   if (month < 10) pre_month = "0";
   return year + "年" + pre_month + month + "月" + pre_date + date + "日";
 }
-// export { getNowTime, getDBById, getDate, getSecond, formatSeconds };
-export { getNowTime, getDate, formatSeconds };
+
+function getMyDate() {
+  return getDate() + getNowTime();
+}
+
+export { getNowTime, getDate, formatSeconds, getMyDate };

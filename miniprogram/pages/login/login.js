@@ -1,105 +1,140 @@
 // pages/login/login.js
+const util = require("../../utils/dataUtil.js");
+const env = require("../../envList.js");
+const app = getApp();
+wx.cloud.init();
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    studentname: "",
-    studentid: "",
-    userimg: "",
+    _stuImg: "",
+    _stuName: "",
+    _stuId: "",
+    _stuCloudImg: "",
+    _openId: "",
   },
-  // //点击上传图片
-  // uploadUserImg: function () {
-  //   var that = this;
-  //   wx.showActionSheet({
-  //     itemList: ["从相册中选择", "拍照"],
-  //     itemColor: "#f7982a",
-  //     success: function (res) {
-  //       if (!res.cancel) {
-  //         if (res.tapIndex == 0) {
-  //           that.chooseWxImageShop("album"); //从相册中选择
-  //         } else if (res.tapIndex == 1) {
-  //           that.chooseWxImageShop("camera"); //手机拍照
-  //         }
-  //       }
-  //     },
-  //   });
-  // },
-  // //选择图片
-  // chooseWxImageShop: function (type) {
-  //   var that = this;
-  //   wx.chooseImage({
-  //     sizeType: ["original", "compressed"],
-  //     sourceType: [type],
-  //     success: function (res) {
-  //       (that.data.userimg = res.tempFilePaths[0]),
-  //         that.upload_file(
-  //           urldate.upimg + "shop/shopIcon",
-  //           res.tempFilePaths[0]
-  //         );
-
-  //       userimg = res.tempFilePaths[0];
-
-  //       that.setData({
-  //         userimg: userimg,
-  //       });
-  //     },
-  //   });
-  // },
-  // //上传文件
-  // upload_file: function (url, filePath) {
-  //   var that = this;
-  //   var signature = signa.signaturetik(
-  //     "token=" + token,
-  //     "userAccessToken=" + userAccessToken,
-  //     "studentAccessToken=" + studentAccessToken
-  //   );
-  //   wx.uploadFile({
-  //     url: urldate.upimg, //后台处理接口
-  //     filePath: filePath,
-  //     name: "file",
-  //     header: {
-  //       "content-type": "multipart/form-data",
-  //     }, // 设置请求的 header
-  //     formData: {
-  //       //需要的参数
-  //       token: token,
-  //       signature: signature,
-  //       userAccessToken: userAccessToken,
-  //       studentAccessToken: studentAccessToken,
-  //     }, // HTTP 请求中其他额外的 form data
-  //     success: function (res) {
-  //       var data = JSON.parse(res.data);
-  //       that.setData({
-  //         userimg: data.path,
-  //       });
-  //       that.showMessage("上传成功");
-  //     },
-  //     fail: function (res) {},
-  //   });
-  // },
+  //获取用户头像
+  uploadUserImg: function (e) {
+    var that = this;
+    wx.chooseImage({
+      count: 1,
+      sizeType: ["compressed"],
+      sourceType: ["album", "camera"],
+      success(res) {
+        that.setData({
+          _stuImg: res.tempFilePaths[0],
+        });
+      },
+    });
+  },
   //获取用户名字
   nameinput: function (e) {
-    this.setData({
-      studentname: e.detail.value,
+    var that = this;
+    that.setData({
+      _stuName: e.detail.value,
+    });
+  },
+  //获取用户学号
+  idinput: function (e) {
+    var that = this;
+    that.setData({
+      _stuId: e.detail.value,
+    });
+  },
+  //上传数据
+  uploadBtnClick: function (e) {
+    var that = this;
+    var id = that.data._stuId;
+    var img = that.data._stuImg;
+    //var date = util.getNowTime();
+    wx.cloud.uploadFile({
+      cloudPath: "_" + id + img.substring(img.lastIndexOf(".")),
+      filePath: img, // 文件路径
+      success: (res) => {
+        that.setData({
+          _stuCloudImg: res.fileID,
+        });
+        wx.showToast({
+          title: "上传成功",
+          icon: "success",
+        });
+      },
+      fail: (err) => {
+        // handle error
+        wx.showToast({
+          title: "上传失败",
+          icon: "error",
+        });
+        console.log(err.errMsg);
+      },
+    });
+  },
+  //登录
+  loginBtnClick: function (e) {
+    var that = this;
+    // wx.cloud.callFunction({
+    //   name: "addStu",
+    //   data: {
+    //     // id: that.data._stuId,
+    //     stuId: that.data._stuId,
+    //     stuName: that.data._stuName,
+    //     stuCloudImg: that.data._stuCloudImg,
+    //   },
+    //   complete: (res) => {
+    //     console.log(res);
+    //     //wx.switchTab({
+    //     //  url: "../home2/home2",
+    //     //});
+    //   },
+    //   fail: (err) => {
+    //     console.log(err);
+    //   },
+    // });
+    const db = wx.cloud.database();
+    db.collection("user").add({
+      data: {
+        _id: app.globalData._openId,
+        _stuId: that.data._stuId,
+        _stuName: that.data._stuName,
+        _stuCloudImg: that.data._stuCloudImg,
+      },
+      success: function (res) {
+        wx.switchTab({
+          url: "../home2/home2",
+        });
+      },
+      fail: function (err) {
+        // wx.showToast({
+        //   title: err.errMsg,
+        // });
+        // console.log(err.errMsg);
+      },
     });
   },
 
-  idinput: function (e) {
-    this.setData({
-      studentid: e.detail.value,
-    });
-  },
-  //获取用户输入的密码
-  loginBtnClick: function (e) {
-    // console.log(
-    //   "用户名：" + this.data.userName + " 密码：" + this.data.userPwd
-    // );
-  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    wx.cloud.init({
+      env: env.envList[0]["envId"],
+    });
+    var app = getApp();
+    var that = this;
+    wx.cloud.callFunction({
+      name: "getOpenId",
+      complete: (res) => {
+        console.log(res.result.userInfo["openId"]);
+        app.globalData._openId = res.result.userInfo["openId"];
+        that.setData({
+          _openId: app.globalData._openId,
+        });
+        wx.setStorageSync("isLogin", app.globalData._openId); //存储登录凭证
+      },
+    });
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
