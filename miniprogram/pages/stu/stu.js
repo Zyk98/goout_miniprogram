@@ -1,5 +1,6 @@
 const util = require("../../utils/dataUtil.js");
 const app = getApp();
+const env = require("../../envList.js");
 var time = 600;
 var flag = 1;
 
@@ -90,11 +91,24 @@ Page({
         else time = 600;
       }, 1000);
     }
+
+    //初始化云函数，调用getOpenId获取用户唯一的openid
+    wx.cloud.init({
+      env: env.envList[0]["envId"],
+    });
+    wx.cloud.callFunction({
+      name: "getOpenId",
+      complete: (res) => {
+        console.log(res.result.userInfo["openId"]);
+        app.globalData._openId = res.result.userInfo["openId"];
+        wx.setStorageSync("isLogin", app.globalData._openId); //存储登录凭证
+      },
+    });
   },
   onShow: function () {
+    //利用openid从数据库中获取用户的姓名、学号、头像url
     wx.cloud.init();
     const db = wx.cloud.database();
-    //日期显示
     var that = this;
     db.collection("user")
       .where({
@@ -102,14 +116,12 @@ Page({
       })
       .get({
         success: function (res) {
-          //console.log(res.data["0"]._stuName);
           console.log(app.globalData._openId);
           that.setData({
             _stuId: res.data["0"]._stuId,
             _stuName: res.data["0"]._stuName,
             _stuImg: res.data["0"]._stuCloudImg,
           });
-          //console("aaa" + that.data.stuId);
         },
         fail: function (err) {
           console.log(err.errMsg);

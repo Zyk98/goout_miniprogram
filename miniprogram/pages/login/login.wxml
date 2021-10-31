@@ -1,15 +1,17 @@
 <!--pages/login/login.wxml-->
-<!-- <text>pages/login/login.wxml</text> -->
 <view class="input">
-  <image class="user_img" mode="aspectFit" bindtap="uploadUserImg" src="{{_stuImg}}"></image>
+  <text>点击图片框上传头像</text>
+  <image class="user_img" mode="aspectFit" bindtap="uploadUserImg" src="{{_stuImg}}">点此上传头像</image>
   <input class="input_text" bindinput="nameinput" type="text" placeholder="请输入姓名" />
   <input class="input_text" bindinput="idinput" type="text" placeholder="请输入学号" />
 </view>
+
 <view class="button">
   <button class="upload_button" bindtap="uploadBtnClick">上传个人信息</button>
   <text class="tip_text">先上传信息，然后等待1s，再登录</text>
   <button class="login_button" bindtap="loginBtnClick">登 录</button>
 </view>
-<view>
-  <text>{{_openId}}</text>
+
+<view style="display: flex; align-items: center;flex-direction: column;">
+  <text style="margin-top: 100rpx;font-size: xx-small;">{{_openId}}</text>
 </view>

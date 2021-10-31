@@ -24,8 +24,3 @@
 </view>
 
 <button class="reset-button" style="color:#FFFFFF" bindtap="resetData">重置数据</button>
-<!-- <view>
-  <page-meta>
-    <navigation-bar title="导航栏" style="margin-bottom: 100rpx;" />
-  </page-meta>
-</view> -->

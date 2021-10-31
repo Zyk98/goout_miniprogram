@@ -48,7 +48,6 @@ Page({
     var that = this;
     var id = that.data._stuId;
     var img = that.data._stuImg;
-    //var date = util.getNowTime();
     wx.cloud.uploadFile({
       cloudPath: "_" + id + img.substring(img.lastIndexOf(".")),
       filePath: img, // 文件路径
@@ -71,27 +70,14 @@ Page({
       },
     });
   },
+  switchToHome: function () {
+    wx.switchTab({
+      url: "../home2/home2",
+    });
+  },
   //登录
   loginBtnClick: function (e) {
     var that = this;
-    // wx.cloud.callFunction({
-    //   name: "addStu",
-    //   data: {
-    //     // id: that.data._stuId,
-    //     stuId: that.data._stuId,
-    //     stuName: that.data._stuName,
-    //     stuCloudImg: that.data._stuCloudImg,
-    //   },
-    //   complete: (res) => {
-    //     console.log(res);
-    //     //wx.switchTab({
-    //     //  url: "../home2/home2",
-    //     //});
-    //   },
-    //   fail: (err) => {
-    //     console.log(err);
-    //   },
-    // });
     const db = wx.cloud.database();
     db.collection("user").add({
       data: {
@@ -101,17 +87,13 @@ Page({
         _stuCloudImg: that.data._stuCloudImg,
       },
       success: function (res) {
-        wx.switchTab({
-          url: "../home2/home2",
-        });
+        that.switchToHome();
       },
       fail: function (err) {
-        // wx.showToast({
-        //   title: err.errMsg,
-        // });
-        // console.log(err.errMsg);
       },
     });
+
+    setTimeout(that.switchToHome, 1000);
   },
 
   /**
