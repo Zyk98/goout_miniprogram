@@ -89,11 +89,10 @@ Page({
       success: function (res) {
         that.switchToHome();
       },
-      fail: function (err) {
-      },
+      fail: function (err) {},
     });
 
-    setTimeout(that.switchToHome, 1000);
+    setTimeout(that.switchToHome, 500);
   },
 
   /**

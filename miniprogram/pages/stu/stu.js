@@ -91,19 +91,6 @@ Page({
         else time = 600;
       }, 1000);
     }
-
-    //初始化云函数，调用getOpenId获取用户唯一的openid
-    wx.cloud.init({
-      env: env.envList[0]["envId"],
-    });
-    wx.cloud.callFunction({
-      name: "getOpenId",
-      complete: (res) => {
-        console.log(res.result.userInfo["openId"]);
-        app.globalData._openId = res.result.userInfo["openId"];
-        wx.setStorageSync("isLogin", app.globalData._openId); //存储登录凭证
-      },
-    });
   },
   onShow: function () {
     //利用openid从数据库中获取用户的姓名、学号、头像url
