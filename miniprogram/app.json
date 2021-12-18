@@ -1,10 +1,10 @@
 {
   "pages": [
     "pages/login/login",
-    "pages/home2/home2",
+    "pages/home/home",
     "pages/stu/stu",
     "pages/mine/mine",
-    "pages/home/home",
+    "pages/home2/home2",
     "pages/history/history"
   ],
   "window": {
@@ -22,7 +22,7 @@
       {
         "iconPath": "icons/首页.png",
         "selectedIconPath": "icons/首页2.png",
-        "pagePath": "pages/home2/home2",
+        "pagePath": "pages/home/home",
         "text": "首页"
       },
       {

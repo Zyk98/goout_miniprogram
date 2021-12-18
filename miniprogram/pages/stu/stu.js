@@ -12,7 +12,7 @@ Page({
   },
   navToHomePage() {
     wx.switchTab({
-      url: "/pages/home2/home2",
+      url: "/pages/home/home",
     });
   },
   display2: function () {
@@ -78,12 +78,22 @@ Page({
   onLoad: function () {
     const app = getApp();
     var that = this;
-    //为页面中time赋值;
-    setInterval(function () {
+    var stuId = wx.getStorageSync("_stuId");
+    var stuName = wx.getStorageSync("_stuName");
+    var stuImg = wx.getStorageSync("_stuImg");
+    if (stuId != "" && stuName != "" && stuImg != "") {
       that.setData({
-        timer: util.formatSeconds(time),
+        _stuId: stuId,
+        _stuName: stuName,
+        _stuImg: stuImg,
       });
-    }, 300);
+    } else {
+      that.setData({
+        _stuId: app.globalData._stuId,
+        _stuName: app.globalData._stuName,
+        _stuImg: app.globalData._stuImg,
+      });
+    }
 
     if (!app.globalData.time) {
       app.globalData.time = setInterval(function () {
@@ -93,27 +103,8 @@ Page({
     }
   },
   onShow: function () {
-    //利用openid从数据库中获取用户的姓名、学号、头像url
-    wx.cloud.init();
-    const db = wx.cloud.database();
     var that = this;
-    db.collection("user")
-      .where({
-        _openid: app.globalData._openId,
-      })
-      .get({
-        success: function (res) {
-          console.log(app.globalData._openId);
-          that.setData({
-            _stuId: res.data["0"]._stuId,
-            _stuName: res.data["0"]._stuName,
-            _stuImg: res.data["0"]._stuCloudImg,
-          });
-        },
-        fail: function (err) {
-          console.log(err.errMsg);
-        },
-      });
+    time = 600;
     that.setData({
       date: util.getDate(),
       arr: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -124,11 +115,21 @@ Page({
       flash: 0,
     });
     app.globalData.timer = setInterval(this.twinkle, 300);
+    //为页面中time赋值;
+    setInterval(function () {
+      that.setData({
+        countdown: util.formatSeconds(time),
+      });
+    }, 300);
   },
   onUnload: function () {
+    var that = this;
     clearInterval(app.globalData.timer);
+    clearInterval(that.countdown);
   },
   onHide: function () {
+    var that = this;
     clearInterval(app.globalData.timer);
+    clearInterval(that.countdown);
   },
 });

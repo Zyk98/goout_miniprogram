@@ -1,3 +1,6 @@
+const app = getApp();
+const env = require("../../envList.js");
+
 Page({
   /**
    * 页面的初始数据
@@ -49,8 +52,25 @@ Page({
     wx.cloud.callFunction({
       name: "getOpenId",
       complete: (res) => {
-        console.log(res.result.userInfo["openId"]);
         app.globalData._openId = res.result.userInfo["openId"];
+        const db = wx.cloud.database();
+        db.collection("user")
+          .where({
+            _openid: app.globalData._openId,
+          })
+          .get({
+            success: function (res) {
+              app.globalData._stuId = res.data["0"]._stuId;
+              app.globalData._stuName = res.data["0"]._stuName;
+              app.globalData._stuImg = res.data["0"]._stuCloudImg;
+              wx.setStorageSync("_stuId", app.globalData._stuId);
+              wx.setStorageSync("_stuName", app.globalData._stuName);
+              wx.setStorageSync("_stuImg", app.globalData._stuImg);
+            },
+            fail: function (err) {
+              console.log(err.errMsg);
+            },
+          });
         wx.setStorageSync("isLogin", app.globalData._openId); //存储登录凭证
       },
     });

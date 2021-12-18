@@ -8,18 +8,19 @@
 
 <view class="button-view">
   <text class="button-view-text">————— 申请 —————</text>
-  <button class="button-view-button" catchtap="clickButton1">{{editText1}}</button>
+  <button class="buttoncolor" catchtap="clickButton1">{{editTextYifu}}</button>
 
-  <button class="button-view-button" catchtap="clickButton2">{{editText2}}</button>
+  <button class="buttoncolor" style="background-color: {{buttoncolorOut}};" catchtap="navToOut">{{editTextOut}}</button>
 
-  <button class="button-view-button" catchtap="clickButton3">{{editText3}}</button>
+  <button class="buttoncolor" style="background-color: {{buttoncolorIn}};" catchtap="navToIn">{{editTextIn}}</button>
 
-  <button class="button-view-button">进出校申请</button>
+  <button class="buttoncolor">进出校申请</button>
 
-  <button class="button-view-button">寒暑假返校申请</button>
+  <button class="buttoncolor">寒暑假返校申请</button>
 
-  <button class="button-view-button">逸夫楼进出申请</button>
+  <button class="buttoncolor">逸夫楼进出申请</button>
 
-  <button class="button-view-button">体温上报</button>
+  <button class="buttoncolor">体温上报</button>
 
 </view>
+<button class="reset-button" style="color:#FFFFFF" bindtap="resetData">重置数据</button>

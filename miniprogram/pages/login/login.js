@@ -72,7 +72,7 @@ Page({
   },
   switchToHome: function () {
     wx.switchTab({
-      url: "../home2/home2",
+      url: "../home/home",
     });
   },
   //登录
@@ -107,7 +107,6 @@ Page({
     wx.cloud.callFunction({
       name: "getOpenId",
       complete: (res) => {
-        console.log(res.result.userInfo["openId"]);
         app.globalData._openId = res.result.userInfo["openId"];
         that.setData({
           _openId: app.globalData._openId,

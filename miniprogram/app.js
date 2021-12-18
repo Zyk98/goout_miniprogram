@@ -14,15 +14,18 @@ App({
       secret: "28cfddb52f474279baaf571b8af1fca6",
     },
     _openId: "",
+    _stuName: "",
+    _stuId: "",
+    _stuImg: "",
   },
 
   onLaunch: function () {
     wx.cloud.init({
-      env: "kdbj-7gk5ydeg7523a410", //你的环境ID
+      env: "kdbj2-9glapdnm7efbd0fb", //你的环境ID
     });
     if (wx.getStorageSync("isLogin")) {
       wx.switchTab({
-        url: "pages/home2/home2",
+        url: "pages/home/home",
       });
     } else {
       wx.reLaunch({

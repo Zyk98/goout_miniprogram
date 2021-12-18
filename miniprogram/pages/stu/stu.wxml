@@ -19,12 +19,10 @@
     </view>
   </view>
   <view class="show-picture">
-    <!-- <image src="{{info.picture}}" style="width:380rpx;height:380rpx"></image> -->
     <image src="{{_stuImg}}" mode="aspectFill" style="width:380rpx;height:380rpx"></image>
   </view>
   <view class="btn">
-    <view class="show-timer">有效期：{{timer}}</view>
-    <!-- <view class="show-timer">有效期：10:00</view> -->
+    <view class="show-timer">有效期：{{countdown}}</view>
   </view>
   <view>
     <view class="circle yes">允许<br></br>进校</view>
@@ -36,7 +34,6 @@
           姓名
         </view>
         <view class="item2">
-          <!-- {{info.name}} -->
           {{_stuName}}
         </view>
       </view>
@@ -48,7 +45,6 @@
           学号/工号
         </view>
         <view class="item2">
-          <!-- {{info.id}} -->
           {{_stuId}}
         </view>
       </view>
@@ -60,7 +56,6 @@
           学院
         </view>
         <view class="item2">
-          <!-- {{info.college}} -->
           机电与信息工程学院
         </view>
       </view>
